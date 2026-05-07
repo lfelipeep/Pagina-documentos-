@@ -1,348 +1,256 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Finance Kids</title>
-
-  <!-- Tailwind + fuentes -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finance Kids | Educación financiera gamificada</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1" rel="stylesheet">
   <style>
-    :root{
-      --glass: rgba(255,255,255,0.08);
-      --card: rgba(255,255,255,0.06);
-      --accent: #13ec80;
-      --accent-2: #4c9aef;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(ellipse at 20% 30%, rgba(0, 150, 255, 0.12), transparent 50%),
+                  radial-gradient(ellipse at 90% 70%, rgba(0, 200, 200, 0.1), transparent 55%),
+                  linear-gradient(135deg, #0a0f1c 0%, #0a1a2e 50%, #06121f 100%);
+      color: #f0f4fa;
+      min-height: 100vh;
+      scroll-behavior: smooth;
     }
-    html,body{height:100%}
-    body{
-      font-family: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(19,236,128,0.06), transparent 10%),
-                  radial-gradient(900px 500px at 90% 90%, rgba(76,154,239,0.05), transparent 10%),
-                  linear-gradient(180deg,#071b12 0%, #0f2d21 100%);
-      color: #e6f6ee;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+    /* Glassmorphism premium */
+    .glass-premium {
+      background: rgba(15, 25, 45, 0.55);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(0, 180, 255, 0.25);
+      border-radius: 2rem;
+      transition: all 0.4s cubic-bezier(0.2, 0.95, 0.4, 1.05);
     }
-
-    /* animated blobs: layered drift + sway + hue + parallax vars */
-    .blob {
-      position: absolute;
-      border-radius: 40%;
-      mix-blend-mode: screen;
-      filter: blur(36px) saturate(120%);
-      opacity: .95;
-      transform-origin: center;
-      pointer-events: none;
-      will-change: transform, filter;
-      --px: 0px; /* parallax x */
-      --py: 0px; /* parallax y */
-      /* combined animation uses the CSS vars to allow JS parallax */
-      animation:
-        drift 14s ease-in-out infinite alternate,
-        sway 7s ease-in-out infinite alternate,
-        hue 20s linear infinite;
+    .glass-premium:hover {
+      border-color: rgba(0, 200, 255, 0.6);
+      background: rgba(20, 35, 60, 0.65);
+      transform: translateY(-6px);
+      box-shadow: 0 25px 40px -12px rgba(0, 150, 255, 0.25);
     }
-    .blob.a {
-      background: linear-gradient(135deg, rgba(19,236,128,.65), rgba(76,154,239,.38));
-      width: 620px; height: 380px;
-      left: -160px; top: -120px;
-      animation-duration: 18s, 9s, 24s;
-      animation-delay: 0s, 0.3s, 0s;
+    /* Botón principal azul vibrante */
+    .btn-cyan {
+      background: linear-gradient(105deg, #00c6ff 0%, #0072ff 100%);
+      box-shadow: 0 8px 20px -6px rgba(0, 114, 255, 0.5);
+      transition: all 0.25s ease;
     }
-    .blob.b {
-      background: linear-gradient(135deg, rgba(76,154,239,.42), rgba(19,236,128,.30));
-      width: 420px; height: 300px;
-      right: -120px; bottom: -80px;
-      animation-duration: 14s, 7s, 20s;
-      animation-delay: 0.7s, 0s, 0.4s;
+    .btn-cyan:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 18px 30px -8px rgba(0, 150, 255, 0.7);
+      filter: brightness(1.05);
     }
-
-    /* drift uses CSS vars so we can add mouse parallax without breaking keyframes */
-    @keyframes drift {
-      0%   { transform: translate3d(calc(var(--px) + 0px), calc(var(--py) + 0px),0) scale(1) rotate(-3deg); filter: blur(34px) saturate(120%); }
-      25%  { transform: translate3d(calc(var(--px) + 36px), calc(var(--py) - 26px),0) scale(1.05) rotate(5deg); filter: blur(30px) saturate(125%); }
-      50%  { transform: translate3d(calc(var(--px) - 28px), calc(var(--py) - 8px),0) scale(1.07) rotate(-2deg); filter: blur(36px) saturate(140%); }
-      75%  { transform: translate3d(calc(var(--px) + 14px), calc(var(--py) + 28px),0) scale(1.03) rotate(4deg); filter: blur(32px) saturate(125%); }
-      100% { transform: translate3d(calc(var(--px) + 0px), calc(var(--py) + 0px),0) scale(1) rotate(-3deg); filter: blur(34px) saturate(120%); }
+    /* Botón secundario azul (para el nuevo enlace) */
+    .btn-secondary-cyan {
+      background: linear-gradient(105deg, #0099ff 0%, #0066cc 100%);
+      box-shadow: 0 8px 20px -6px rgba(0, 102, 204, 0.4);
+      transition: all 0.25s ease;
     }
-
-    /* small lateral sway for depth */
-    @keyframes sway {
-      0%   { transform: translateX(0) rotate(0deg); }
-      50%  { transform: translateX(10px) rotate(4deg); }
-      100% { transform: translateX(0) rotate(0deg); }
+    .btn-secondary-cyan:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 18px 30px -8px rgba(0, 150, 255, 0.5);
+      filter: brightness(1.08);
     }
-
-    /* slow hue shift to gently change colors */
-    @keyframes hue {
-      0%   { filter: hue-rotate(0deg); }
-      50%  { filter: hue-rotate(28deg); }
-      100% { filter: hue-rotate(0deg); }
+    .btn-outline-cyan {
+      background: rgba(0, 150, 255, 0.08);
+      border: 1px solid rgba(0, 180, 255, 0.5);
+      transition: all 0.2s ease;
     }
-
-    /* respect reduced motion preference */
-    @media (prefers-reduced-motion: reduce) {
-      .blob { animation: none !important; }
+    .btn-outline-cyan:hover {
+      background: rgba(0, 150, 255, 0.2);
+      border-color: #00c6ff;
+      transform: translateY(-2px);
     }
-
-    /* subtle glass card backdrop */
-    .glass {
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      backdrop-filter: blur(8px) saturate(120%);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    /* buttons */
-    .btn-accent{
-      background: linear-gradient(90deg,var(--accent),var(--accent-2));
-      box-shadow: 0 8px 24px rgba(19,236,128,0.12), inset 0 -2px 6px rgba(0,0,0,0.12);
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-    .btn-accent:hover{ transform: translateY(-4px); box-shadow: 0 20px 40px rgba(19,236,128,0.16); }
-
-    /* Semester buttons: prominent, animated */
-    .sem-btn{
-      --g1: rgba(19,236,128,0.12);
-      --g2: rgba(76,154,239,0.08);
-      display:inline-flex;
-      align-items:center;
-      gap:.6rem;
-      padding:.55rem .9rem;
-      border-radius:999px;
-      color: #e6f6ee;
-      font-weight:600;
-      font-size:.9rem;
-      background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.04);
+    /* Navegación con subrayado animado */
+    .nav-link {
       position: relative;
-      overflow: hidden;
-      transition: transform .22s cubic-bezier(.2,.9,.3,1), box-shadow .22s ease, background .22s ease;
-      box-shadow: 0 6px 18px rgba(3,7,4,0.25);
+      transition: all 0.2s;
     }
-    .sem-btn::before{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(90deg, rgba(19,236,128,0.18) 0%, rgba(76,154,239,0.12) 100%);
-      opacity:0;
-      transform: translateY(8px) scale(0.95);
-      transition: opacity .25s ease, transform .25s ease;
-      pointer-events:none;
-      mix-blend-mode: screen;
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      width: 0%;
+      height: 2.5px;
+      background: linear-gradient(90deg, #00c6ff, #00e0ff);
+      border-radius: 4px;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
     }
-    .sem-btn::after{
-      content:"";
-      position:absolute;
-      left:14px; right:14px; bottom:8px;
-      height:3px; border-radius:8px;
-      background: linear-gradient(90deg,#13ec80,#4c9aef);
-      transform: scaleX(0);
-      transform-origin:left center;
-      transition: transform .28s cubic-bezier(.2,.9,.3,1);
-      opacity:.95;
+    .nav-link:hover::after, .nav-link.active::after { width: 70%; }
+    /* Blobs animados */
+    .blob-float {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 0;
+      transition: transform 0.15s ease-out;
     }
-    .sem-btn:hover{
-      transform: translateY(-6px) scale(1.03) rotate(-0.4deg);
-      box-shadow: 0 20px 40px rgba(8,14,10,0.45);
+    .blob-1 { background: radial-gradient(circle, #0072ff, #00c6ff); width: 55vw; height: 55vw; top: -25vh; left: -25vw; }
+    .blob-2 { background: radial-gradient(circle, #00e0ff, #0055aa); width: 50vw; height: 50vw; bottom: -30vh; right: -20vw; }
+    /* Animación shimmer para texto */
+    @keyframes shimmerMove {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
     }
-    .sem-btn:hover::before{ opacity:1; transform: translateY(0) scale(1); }
-    .sem-btn:hover::after{ transform: scaleX(1); }
-
-    /* subtle focus for keyboard */
-    .sem-btn:focus{ outline: none; box-shadow: 0 0 0 4px rgba(19,236,128,0.12); }
-
-    /* small animations */
-    .feature:hover{ transform: translateY(-6px) scale(1.01); box-shadow: 0 12px 30px rgba(0,0,0,0.35); }
+    .shimmer-cyan {
+      background: linear-gradient(120deg, #00c6ff, #aaffff, #0072ff);
+      background-size: 200% auto;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: shimmerMove 5s linear infinite;
+    }
+    /* floating icons */
+    @keyframes floatSoft {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-8px); }
+    }
+    .float-icon { animation: floatSoft 3s infinite alternate ease-in-out; }
+    
+    /* pulse animation para el botón nuevo (opcional, llama la atención) */
+    @keyframes gentlePulse {
+      0% { box-shadow: 0 0 0 0 rgba(0, 198, 255, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(0, 198, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 198, 255, 0); }
+    }
+    .pulse-attention {
+      animation: gentlePulse 2s infinite;
+    }
+    .pulse-attention:hover {
+      animation: none;
+    }
   </style>
 </head>
 <body>
-
-  <!-- decorative blobs -->
-  <div class="blob a pointer-events-none"></div>
-  <div class="blob b pointer-events-none"></div>
-
-  <header class="w-full py-6">
-    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+  <div class="blob-float blob-1" id="blob1"></div>
+  <div class="blob-float blob-2" id="blob2"></div>
+  
+  <div class="relative z-10 max-w-6xl mx-auto px-5 md:px-6">
+    <header class="pt-6 pb-4 flex flex-wrap justify-between items-center gap-4 border-b border-white/10">
       <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-lg flex items-center justify-center glass">
-          <span class="material-symbols-outlined text-3xl" style="color:var(--accent)">account_balance</span>
+        <div class="w-12 h-12 rounded-2xl bg-white/5 backdrop-blur flex items-center justify-center border border-white/15 shadow-md float-icon">
+          <span class="material-symbols-outlined text-3xl text-[#00c6ff]">account_balance</span>
         </div>
         <div>
-          <div class="text-sm font-semibold text-white/90">Finance Kids</div>
-          <div class="text-xs text-white/40">Educación financiera para jóvenes</div>
+          <div class="text-2xl font-extrabold tracking-tight">Finance<span class="text-[#00c6ff]">Kids</span></div>
+          <div class="text-xs text-white/40 tracking-wide">aprender · jugar · crecer</div>
         </div>
       </div>
-
-      <nav class="flex items-center gap-3">
-        <!-- Removed redundant "Abrir documentación" button. Semester buttons styled strongly -->
-        <a href="semestre1.html" class="sem-btn" aria-label="Ir a Semestre 1">
-          <span class="material-symbols-outlined text-sm" style="color:var(--accent)">looks_one</span>
-          Semestre 1
-        </a>
-        <a href="semestre2.html" class="sem-btn" aria-label="Ir a Semestre 2">
-          <span class="material-symbols-outlined text-sm" style="color:var(--accent)">looks_two</span>
-          Semestre 2
-        </a>
-        <a href="semestre3.html" class="tab-link sem-btn" aria-label="Semestre 3">
-          <span class="material-symbols-outlined text-sm" style="color:var(--accent)">looks_3</span> Semestre 3
-        </a>
+      <nav class="flex flex-wrap gap-2 sm:gap-4">
+        <a href="index.html" class="nav-link text-sm font-semibold text-white/90 active">Inicio</a>
+        <a href="semestre1.html" class="nav-link text-sm font-semibold text-white/70">Semestre 1</a>
+        <a href="semestre2.html" class="nav-link text-sm font-semibold text-white/70">Semestre 2</a>
+        <a href="semestre3.html" class="nav-link text-sm font-semibold text-white/70">Semestre 3</a>
+         <a href="uno.html" class="nav-link text-sm font-semibold text-white/70">Info</a>
       </nav>
-    </div>
-  </header>
+    </header>
 
-  <main class="flex-1">
-    <section class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-      <!-- Left: Hero content -->
-      <div class="space-y-6">
-        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
-          Aprende finanzas jugando.
-          <span class="block text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-blue-300">Divertido, seguro y para todas las edades.</span>
-        </h1>
-
-        <p class="text-white/80 max-w-xl leading-relaxed">
-          Finance Kids convierte conceptos financieros en retos, niveles y recompensas. Gamificación diseñada para crear buenos hábitos desde pequeños — ahorro, presupuesto y toma de decisiones.
-        </p>
-
-        <div class="flex flex-wrap gap-3">
-          <a href="https://financekids-1.onrender.com/" target="_blank" class="inline-flex items-center gap-3 btn-accent px-5 py-3 rounded-full text-sm font-semibold">
-            <span class="material-symbols-outlined text-lg">rocket_launch</span>
-            Probar demo del juego
-          </a>
-          <a href="semestre1.html" class="inline-flex items-center gap-2 px-4 py-3 rounded-full glass text-sm font-semibold text-white/90 hover:scale-1">Explorar contenido</a>
-        </div>
-
-        <!-- quick highlights -->
-        <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div class="glass p-3 rounded-lg text-center">
-            <div class="text-2xl font-bold" style="color:var(--accent)">+50</div>
-            <div class="text-xs text-white/70">Lecciones</div>
+    <main class="py-12 md:py-20">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur rounded-full px-4 py-1.5 border border-white/10">
+            <span class="w-2 h-2 rounded-full bg-[#00c6ff] animate-pulse"></span>
+            <span class="text-xs font-semibold tracking-wide text-white/80">⚡ Gamificación profesional · Niveles + badges</span>
           </div>
-          <div class="glass p-3 rounded-lg text-center">
-            <div class="text-2xl font-bold" style="color:var(--accent)">3</div>
-            <div class="text-xs text-white/70">Semestres</div>
+          <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">
+            Domina finanzas<span class="shimmer-cyan block"> jugando y ganando</span>
+          </h1>
+          <p class="text-white/60 text-lg max-w-xl leading-relaxed">
+            Finance Kids transforma conceptos financieros en retos adictivos. Ahorro, presupuestos e inversión — todo en una experiencia tipo juego.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-2">
+            <!-- Botón 1: Demo existente -->
+            <a href="https://finance-kids-frontend.onrender.com/" target="_blank" class="btn-cyan inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-bold text-white shadow-xl">
+              <span class="material-symbols-outlined text-xl">rocket_launch</span>
+              Apis
+            </a>
+            <!-- Botón 2: NUEVO enlace a finance-kids-frontend -->
+            <a href="https://finance-kids-demo.onrender.com/login/" target="_blank" class="btn-secondary-cyan inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-bold text-white shadow-xl pulse-attention">
+              <span class="material-symbols-outlined text-xl">stadia_controller</span>
+              Juego Demo
+            </a>
+            <!-- Botón 3: Explorar contenido -->
+            <a href="semestre1.html" class="btn-outline-cyan inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold">
+              <span class="material-symbols-outlined text-lg">menu_book</span>
+              Explorar contenido
+            </a>
           </div>
-          <div class="glass p-3 rounded-lg text-center">
-            <div class="text-2xl font-bold" style="color:var(--accent)">Gam</div>
-            <div class="text-xs text-white/70">Motivación</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: Card preview -->
-      <div class="relative">
-        <div class="glass p-6 rounded-2xl shadow-xl border border-white/6">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <div class="text-sm font-semibold text-white">DOCUMENTACIÓN</div>
-              <div class="text-xs text-white/60">Proyecto Finance Kids</div>
+          <div class="grid grid-cols-3 gap-3 pt-6">
+            <div class="glass-premium p-3 text-center rounded-2xl">
+              <div class="text-3xl font-black text-[#00c6ff]">+50</div>
+              <div class="text-[11px] uppercase tracking-wider text-white/50">Lecciones</div>
             </div>
-            <div class="flex items-center gap-2">
-              <div class="w-10 h-10 rounded-full bg-white/8 flex items-center justify-center text-white/90">PDF</div>
-              <a href="documentos e imagenes/DOCUMENTO PROYECTO, FINANCE KIDS.pdf" target="_blank" class="text-xs px-3 py-1 rounded-md bg-white/6 text-white hover:bg-white/10">Abrir</a>
+            <div class="glass-premium p-3 text-center rounded-2xl">
+              <div class="text-3xl font-black text-[#00c6ff]">3</div>
+              <div class="text-[11px] uppercase tracking-wider text-white/50">Semestres</div>
             </div>
-          </div>
-
-          <div class="mt-5 bg-gradient-to-b from-black/10 to-black/6 rounded-lg p-4">
-            <div class="h-48 md:h-60 rounded-lg overflow-hidden relative">
-              <iframe src="documentos e imagenes/DOCUMENTO PROYECTO, FINANCE KIDS.pdf" class="w-full h-full rounded-md" frameborder="0" aria-label="Vista previa PDF"></iframe>
-            </div>
-            <div class="mt-3 flex items-center justify-between text-xs text-white/60">
-              <span>Vista previa integrada</span>
-              <span>PDF • 1.2 MB</span>
+            <div class="glass-premium p-3 text-center rounded-2xl">
+              <div class="text-3xl font-black text-[#00c6ff]">🏆</div>
+              <div class="text-[11px] uppercase tracking-wider text-white/50">Logros</div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Features -->
-    <section class="max-w-6xl mx-auto px-6 py-10">
-      <h3 class="text-white text-2xl font-bold mb-6">Qué ofrece Finance Kids</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="feature glass p-5 rounded-xl transition-transform">
-          <div class="text-3xl mb-3" style="color:var(--accent)">🎮</div>
-          <div class="font-semibold">Aprendizaje gamificado</div>
-          <p class="text-sm text-white/70 mt-2">Retos, puntos y recompensas para mantener la motivación.</p>
-        </div>
-        <div class="feature glass p-5 rounded-xl transition-transform">
-          <div class="text-3xl mb-3" style="color:var(--accent)">📊</div>
-          <div class="font-semibold">Seguimiento de progreso</div>
-          <p class="text-sm text-white/70 mt-2">Reportes y metas para medir avances y hábitos.</p>
-        </div>
-        <div class="feature glass p-5 rounded-xl transition-transform">
-          <div class="text-3xl mb-3" style="color:var(--accent)">🔒</div>
-          <div class="font-semibold">Seguro y amigable</div>
-          <p class="text-sm text-white/70 mt-2">Interfaz pensada para niños, con controles educativos.</p>
+        <div class="relative group">
+          <div class="glass-premium p-5 rounded-3xl shadow-2xl">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <span class="text-xs font-semibold text-white/40 uppercase tracking-wider">Documento oficial</span>
+                <h3 class="text-xl font-bold">Proyecto Finance Kids</h3>
+              </div>
+              <div class="bg-white/10 rounded-full p-2 group-hover:scale-110 transition"><span class="material-symbols-outlined text-[#00c6ff]">picture_as_pdf</span></div>
+            </div>
+            <div class="h-52 rounded-2xl overflow-hidden border border-white/10 bg-black/30">
+              <iframe src="documentos e imagenes/DOCUMENTO PROYECTO, FINANCE KIDS.pdf" class="w-full h-full" frameborder="0"></iframe>
+            </div>
+            <div class="mt-5 flex gap-3">
+              <a href="documentos e imagenes/DOCUMENTO PROYECTO, FINANCE KIDS.pdf" target="_blank" class="flex-1 bg-white/10 hover:bg-white/20 text-center py-2.5 rounded-xl text-sm font-medium transition">📄 Vista previa</a>
+              <a href="documentos e imagenes/DOCUMENTO PROYECTO, FINANCE KIDS.pdf" download class="flex-1 btn-cyan text-white font-bold text-center py-2.5 rounded-xl text-sm shadow-md">⬇️ Descargar PDF</a>
+            </div>
+          </div>
+          <div class="absolute -z-10 -top-6 -right-8 w-40 h-40 bg-[#00c6ff] blur-3xl opacity-20 rounded-full group-hover:opacity-40 transition"></div>
         </div>
       </div>
-    </section>
 
-    <!-- Team section -->
-    <section class="max-w-6xl mx-auto px-6 py-10">
-      <h3 class="text-white text-2xl font-bold mb-6">Equipo</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div class="glass p-4 rounded-xl text-center">
-          <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-3 border border-white/6">
-            <img src="documentos e imagenes/luisavatar.png" alt="Luis Felipe" class="w-full h-full object-cover" />
-          </div>
-          <div class="font-semibold">Luis Felipe</div>
-          <div class="text-xs text-white/60">Diseño & Producto</div>
+      <!-- Features section -->
+      <div class="mt-28">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-[#00c6ff] text-sm font-bold uppercase tracking-wider">experiencia única</span>
+          <h2 class="text-3xl md:text-4xl font-bold mt-2">Aprender nunca fue tan <span class="text-white/90">divertido</span></h2>
         </div>
-        <div class="glass p-4 rounded-xl text-center">
-          <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-3 border border-white/6">
-            <img src="documentos e imagenes/williavatar.png" alt="William Dario" class="w-full h-full object-cover" />
-          </div>
-          <div class="font-semibold">William Dario</div>
-          <div class="text-xs text-white/60">Frontend & UX</div>
-        </div>
-        <div class="glass p-4 rounded-xl text-center">
-          <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-3 border border-white/6">
-            <img src="documentos e imagenes/danielavatar.png" alt="Daniel Felipe" class="w-full h-full object-cover" />
-          </div>
-          <div class="font-semibold">Daniel Felipe</div>
-          <div class="text-xs text-white/60">Backend & Datos</div>
+        <div class="grid sm:grid-cols-3 gap-7">
+          <div class="glass-premium p-6 text-center group"><div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition"><span class="material-symbols-outlined text-3xl text-[#00c6ff]">stadia_controller</span></div><h3 class="text-xl font-bold">Gamificación total</h3><p class="text-white/50 text-sm mt-2">Misiones diarias, experiencia y ranking en vivo.</p></div>
+          <div class="glass-premium p-6 text-center group"><div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition"><span class="material-symbols-outlined text-3xl text-[#00c6ff]">insights</span></div><h3 class="text-xl font-bold">Progreso medible</h3><p class="text-white/50 text-sm mt-2">Estadísticas detalladas y metas personalizadas.</p></div>
+          <div class="glass-premium p-6 text-center group"><div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition"><span class="material-symbols-outlined text-3xl text-[#00c6ff]">child_care</span></div><h3 class="text-xl font-bold">100% seguro</h3><p class="text-white/50 text-sm mt-2">Sin publicidad, ambiente controlado y educativo.</p></div>
         </div>
       </div>
-    </section>
-  </main>
 
-  <footer class="py-8">
-    <div class="max-w-6xl mx-auto px-6 text-center text-sm text-white/60">
-      © 2025 Finance Kids — Proyecto educativo. <span class="mx-2">•</span> 
-    </div>
-  </footer>
-
-  <!-- Nota: se removieron los fallbacks de iniciales para mostrar siempre las imágenes.
-       Si alguna imagen no aparece, verifica que los archivos existan en 'documentos e imagenes/'.
-       Recomiendo renombrar la carpeta a 'documentos-imagenes' sin espacios y actualizar rutas. -->
-
+      <!-- Team -->
+      <div class="mt-28 mb-16">
+        <div class="text-center mb-10"><span class="text-[#00c6ff] text-sm font-semibold">equipo creativo</span><h2 class="text-3xl md:text-4xl font-bold">Detrás del proyecto</h2><p class="text-white/50 max-w-lg mx-auto mt-2">Talento joven, pasión por la educación financiera</p></div>
+        <div class="grid sm:grid-cols-3 gap-8">
+          <div class="glass-premium p-6 text-center"><div class="w-28 h-28 mx-auto rounded-full overflow-hidden border-2 border-[#00c6ff]/50 shadow-xl mb-4"><img src="documentos e imagenes/luisavatar.png" class="w-full h-full object-cover"></div><div class="text-lg font-extrabold">Luis Felipe Cardozo</div><div class="text-xs text-white/40 uppercase tracking-wide">Diseño & Producto</div></div>
+          <div class="glass-premium p-6 text-center"><div class="w-28 h-28 mx-auto rounded-full overflow-hidden border-2 border-[#00c6ff]/50 shadow-xl mb-4"><img src="documentos e imagenes/williavatar.png" class="w-full h-full object-cover"></div><div class="text-lg font-extrabold">William Dario Gonzalez</div><div class="text-xs text-white/40 uppercase tracking-wide">Frontend & UX</div></div>
+          <div class="glass-premium p-6 text-center"><div class="w-28 h-28 mx-auto rounded-full overflow-hidden border-2 border-[#00c6ff]/50 shadow-xl mb-4"><img src="documentos e imagenes/danielavatar.png" class="w-full h-full object-cover"></div><div class="text-lg font-extrabold">Daniel Felipe Moreno</div><div class="text-xs text-white/40 uppercase tracking-wide">Backend & Datos</div></div>
+        </div>
+      </div>
+    </main>
+    <footer class="py-8 border-t border-white/10 text-center text-white/30 text-sm">© 2025 Finance Kids — educación financiera del futuro</footer>
+  </div>
   <script>
-    // parallax for blobs (mouse move) — gentle, respects reduced motion
-    if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const blobs = document.querySelectorAll('.blob');
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      window.addEventListener('mousemove', (e) => {
-        const cx = window.innerWidth / 2;
-        const cy = window.innerHeight / 2;
-        const dx = (e.clientX - cx) / cx; // -1 .. 1
-        const dy = (e.clientY - cy) / cy;
-        blobs.forEach((b, i) => {
-          // different intensity per blob
-          const intensity = i === 0 ? 36 : -22;
-          const ix = Math.round(dx * intensity);
-          const iy = Math.round(dy * intensity);
-          b.style.setProperty('--px', ix + 'px');
-          b.style.setProperty('--py', iy + 'px');
-        });
-      }, { passive: true });
-
-      // gentle idle motion for when mouse leaves
-      window.addEventListener('mouseleave', () => {
-        blobs.forEach(b => { b.style.setProperty('--px', '0px'); b.style.setProperty('--py', '0px'); });
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const b1 = document.getElementById('blob1'), b2 = document.getElementById('blob2');
+      document.addEventListener('mousemove', (e) => {
+        let mx = (e.clientX / window.innerWidth) * 2 - 1, my = (e.clientY / window.innerHeight) * 2 - 1;
+        if(b1) b1.style.transform = `translate(${mx * 25}px, ${my * 18}px)`;
+        if(b2) b2.style.transform = `translate(${mx * -30}px, ${my * -22}px)`;
       });
     }
   </script>

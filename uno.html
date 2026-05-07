@@ -1,145 +1,149 @@
 <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finance Kids | Información General</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(ellipse at 20% 30%, rgba(0, 150, 255, 0.12), transparent 50%),
+                  radial-gradient(ellipse at 90% 70%, rgba(0, 200, 200, 0.1), transparent 55%),
+                  linear-gradient(135deg, #0a0f1c 0%, #0a1a2e 50%, #06121f 100%);
+      color: #f0f4fa;
+      min-height: 100vh;
+      scroll-behavior: smooth;
+    }
+    .glass-premium {
+      background: rgba(15, 25, 45, 0.55);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(0, 180, 255, 0.25);
+      border-radius: 2rem;
+      transition: all 0.4s cubic-bezier(0.2, 0.95, 0.4, 1.05);
+    }
+    .glass-premium:hover {
+      border-color: rgba(0, 200, 255, 0.6);
+      background: rgba(20, 35, 60, 0.65);
+      transform: translateY(-6px);
+      box-shadow: 0 25px 40px -12px rgba(0, 150, 255, 0.25);
+    }
+    .nav-link {
+      position: relative;
+      transition: all 0.2s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      width: 0%;
+      height: 2.5px;
+      background: linear-gradient(90deg, #00c6ff, #00e0ff);
+      border-radius: 4px;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after, .nav-link.active::after { width: 70%; }
+    .blob-float {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 0;
+      transition: transform 0.15s ease-out;
+    }
+    .blob-1 { background: radial-gradient(circle, #0072ff, #00c6ff); width: 55vw; height: 55vw; top: -25vh; left: -25vw; }
+    .blob-2 { background: radial-gradient(circle, #00e0ff, #0055aa); width: 50vw; height: 50vw; bottom: -30vh; right: -20vw; }
+    @keyframes shimmerMove {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .shimmer-cyan {
+      background: linear-gradient(120deg, #00c6ff, #aaffff, #0072ff);
+      background-size: 200% auto;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: shimmerMove 5s linear infinite;
+    }
+    @keyframes floatSoft {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-8px); }
+    }
+    .float-icon { animation: floatSoft 3s infinite alternate ease-in-out; }
+  </style>
+</head>
+<body>
+  <div class="blob-float blob-1" id="blob1"></div>
+  <div class="blob-float blob-2" id="blob2"></div>
 
-<html class="light" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Finance Kids - Documentación del Proyecto</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "primary": "#13ec49",
-            "background-light": "#f6f8f6",
-            "background-dark": "#102215",
-            "text-light": "#0d1b11",
-            "text-dark": "#e7f3ea",
-            "subtle-light": "#cfe7d5",
-            "subtle-dark": "#1d3a24",
-            "primary-text-light": "#0d1b11",
-            "primary-text-dark": "#0d1b11",
-            "card-light": "#ffffff",
-            "card-dark": "#162f1c",
-            "accent-light": "#4c9a5f",
-            "accent-dark": "#a6c4a9"
-          },
-          fontFamily: {
-            "display": ["Manrope", "sans-serif"]
-          },
-          borderRadius: {
-            "DEFAULT": "0.5rem",
-            "lg": "0.75rem",
-            "xl": "1rem",
-            "full": "9999px"
-          },
-        },
-      },
+  <div class="relative z-10 max-w-5xl mx-auto px-5 md:px-6">
+    <header class="pt-6 pb-4 flex flex-wrap justify-between items-center gap-4 border-b border-white/10">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-white/5 backdrop-blur flex items-center justify-center border border-white/15 shadow-md float-icon">
+          <span class="material-symbols-outlined text-3xl text-[#00c6ff]">account_balance</span>
+        </div>
+        <div>
+          <div class="text-2xl font-extrabold tracking-tight">Finance<span class="text-[#00c6ff]">Kids</span></div>
+          <div class="text-xs text-white/40 tracking-wide">Documentación completa</div>
+        </div>
+      </div>
+      <nav class="flex flex-wrap gap-2 sm:gap-4">
+        <a href="index.html" class="nav-link text-sm font-semibold text-white/70">Inicio</a>
+        <a href="semestre1.html" class="nav-link text-sm font-semibold text-white/70">Semestre 1</a>
+        <a href="semestre2.html" class="nav-link text-sm font-semibold text-white/70">Semestre 2</a>
+        <a href="semestre3.html" class="nav-link text-sm font-semibold text-white/70">Semestre 3</a>
+        <a href="uno.html" class="nav-link text-sm font-semibold text-white/90 active">Info</a>
+      </nav>
+    </header>
+
+    <main class="py-12 md:py-16">
+      <div class="text-center mb-12">
+        <h1 class="text-5xl md:text-6xl font-extrabold">Finance <span class="shimmer-cyan">Kids</span></h1>
+        <p class="text-white/60 text-lg max-w-2xl mx-auto mt-4">Proyecto educativo que enseña finanzas personales a niños y adolescentes mediante gamificación, niveles y recompensas.</p>
+      </div>
+
+      <!-- Misión -->
+      <div class="glass-premium p-8 rounded-2xl mb-12">
+        <h2 class="text-2xl font-bold flex items-center gap-2"><span class="material-symbols-outlined text-[#00c6ff]">rocket_launch</span> Misión del proyecto</h2>
+        <p class="text-white/70 mt-3 leading-relaxed">Finance Kids nace para llenar el vacío de educación financiera en etapas tempranas. A través de una app estilo juego (similar a Duolingo), los jóvenes aprenden a gestionar dinero, ahorrar, presupuestar e invertir mientras suben de nivel y obtienen logros.</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid sm:grid-cols-3 gap-6 mt-12">
+        <div class="glass-premium p-5 text-center"><span class="material-symbols-outlined text-4xl text-[#00c6ff]">school</span><h3 class="font-bold mt-2">+50 lecciones</h3><p class="text-sm text-white/50">Desde ahorro hasta inversión</p></div>
+        <div class="glass-premium p-5 text-center"><span class="material-symbols-outlined text-4xl text-[#00c6ff]">stadia_controller</span><h3 class="font-bold mt-2">Gamificación</h3><p class="text-sm text-white/50">XP, rankings, misiones diarias</p></div>
+        <div class="glass-premium p-5 text-center"><span class="material-symbols-outlined text-4xl text-[#00c6ff]">security</span><h3 class="font-bold mt-2">Entorno seguro</h3><p class="text-sm text-white/50">Sin publicidad, datos protegidos</p></div>
+      </div>
+
+      <!-- Equipo -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold text-center mb-8">Equipo desarrollador</h2>
+        <div class="grid sm:grid-cols-3 gap-8">
+          <div class="glass-premium p-6 text-center"><div class="w-28 h-28 mx-auto rounded-full overflow-hidden border-2 border-[#00c6ff]/50 shadow-xl mb-4"><img src="documentos e imagenes/luisavatar.png" class="w-full h-full object-cover"></div><div class="font-bold text-lg">Luis Felipe Cardozo</div><div class="text-sm text-white/40">Diseño & Producto</div></div>
+          <div class="glass-premium p-6 text-center"><div class="w-28 h-28 mx-auto rounded-full overflow-hidden border-2 border-[#00c6ff]/50 shadow-xl mb-4"><img src="documentos e imagenes/williavatar.png" class="w-full h-full object-cover"></div><div class="font-bold text-lg">William Dario Gonzalez</div><div class="text-sm text-white/40">Frontend & UX</div></div>
+          <div class="glass-premium p-6 text-center"><div class="w-28 h-28 mx-auto rounded-full overflow-hidden border-2 border-[#00c6ff]/50 shadow-xl mb-4"><img src="documentos e imagenes/danielavatar.png" class="w-full h-full object-cover"></div><div class="font-bold text-lg">Daniel Felipe Moreno</div><div class="text-sm text-white/40">Backend & Datos</div></div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="py-8 border-t border-white/10 text-center text-white/30 text-sm">© 2025 Finance Kids — educación financiera del futuro</footer>
+  </div>
+
+  <script>
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const b1 = document.getElementById('blob1'), b2 = document.getElementById('blob2');
+      document.addEventListener('mousemove', (e) => {
+        let mx = (e.clientX / window.innerWidth) * 2 - 1, my = (e.clientY / window.innerHeight) * 2 - 1;
+        if(b1) b1.style.transform = `translate(${mx * 25}px, ${my * 18}px)`;
+        if(b2) b2.style.transform = `translate(${mx * -30}px, ${my * -22}px)`;
+      });
     }
   </script>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-      scroll-behavior: smooth; /* desplazamiento suave al hacer clic en anclas */
-    }
-
-    /* Animación para las pestañas (hover/focus) */
-    .tab-link { position: relative; transition: transform .18s ease, box-shadow .18s ease, color .18s ease; }
-    .tab-link:hover, .tab-link:focus { transform: translateY(-4px) scale(1.03); box-shadow: 0 10px 20px rgba(16,34,21,0.12); z-index: 20; }
-    .tab-link::after { content: ""; position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); width: 0; height: 3px; border-radius: 6px; background: #13ec49; transition: width .18s ease; }
-    .tab-link:hover::after, .tab-link:focus::after { width: 60%; }
-  </style>
-  </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
-<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
-<!-- Top App Bar -->
-<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
-<div class="flex items-center p-4 pb-2 justify-between">
-<div class="text-primary flex size-12 shrink-0 items-center justify-center">
-<span class="material-symbols-outlined !text-4xl">
-            account_balance
-          </span>
-</div>
-<h1 class="text-text-light dark:text-text-dark text-lg font-bold leading-tight tracking-[-0.015em] flex-1">Finance Kids</h1>
-</div>
-</header>
-<!-- Tabs Navigation -->
-<nav class="sticky top-[72px] z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
-<div class="border-b border-subtle-light dark:border-subtle-dark px-4">
-<div class="flex justify-between">
-<a class="flex flex-col items-center justify-center border-b-[3px] border-b-primary text-primary-text-light dark:text-primary pb-[13px] pt-4 flex-1" href="#">
-<p class="text-sm font-bold leading-normal tracking-[0.015em]">Información General</p>
-</a>
-
-<a class="tab-link flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-accent-light dark:text-accent-dark pb-[13px] pt-4 flex-1" href="semestre1.html">
-  <p class="text-sm font-bold leading-normal tracking-[0.015em]">Semestre 1</p>
-</a>
-<a class="tab-link flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-accent-light dark:text-accent-dark pb-[13px] pt-4 flex-1" href="semestre2.html">
-  <p class="text-sm font-bold leading-normal tracking-[0.015em]">Semestre 2</p>
-</a>
-<a class="tab-link flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-accent-light dark:text-accent-dark pb-[13px] pt-4 flex-1" href="semestre3.html">
-  <p class="text-sm font-bold leading-normal tracking-[0.015em]">Semestre 3</p>
-</a>
-
-</div>
-</div>
-</nav>
-<main class="flex-1">
-<!-- Hero Section -->
-<div class="@container">
-<div class="@[480px]:p-4 p-4">
-<div class="flex min-h-[380px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 rounded-lg items-center justify-center p-4 text-center" data-alt="Abstract green financial chart background" style='background-image: linear-gradient(rgba(13, 27, 17, 0.4) 0%, rgba(13, 27, 17, 0.7) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuALUPSzKb_zDXgBumqjBg_gSx-52MqLzyWjUssWU5M25OX7ZnQgWKeVmBzm9IWFXCt3pDbcbCG7jTQO3YiyO8WFRc_Ms7hiGhl_pIt5qLIjJ2I9u_c8NhhElX_5Whd2SPtcBDeoTxdaICbFPig27D7wQQfEVe5s1g_w4G6d2443oeUnvRR-sN9hBq1uXnbBsz0B0Z9PY9nlLV3QPYlPAbdUFEGp0zfFtP8TRLwjGTzLLPKB1lJi2gBUl3DkNhD2NPd485eIkCWcRYU");'>
-<div class="flex flex-col gap-2">
-</h2>
-<div class="max-w-5xl mx-auto text-center md:text-left">
-  <h2 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl">Finance Kids</h2>
-  <p class="mt-4 text-white/95 text-base md:text-lg leading-relaxed max-w-3xl mx-auto md:mx-0 bg-black/25 backdrop-blur-sm p-4 md:p-6 rounded-lg border border-white/10">
-    Finance Kids es un proyecto que busca enseñar educación financiera a niños y adolescentes de una forma divertida e interactiva. Es una aplicación tipo juego educativo (similar a Duolingo) donde los usuarios aprenden manejo del dinero, ahorro, gastos e inversiones mediante niveles, retos y recompensas.
-    <br/><br/>
-    El objetivo es motivar a los jóvenes a desarrollar buenos hábitos financieros desde temprana edad, combinando gamificación con contenidos prácticos y adaptados por edad. La app registra el progreso y ofrece incentivos para un aprendizaje continuo.
-  </p>
-</div>
-</div>
-</div>
-</div>
-<!-- Team Section -->
-<section class="px-4 py-6">
-  <h3 class="text-text-light dark:text-text-dark text-[22px] font-bold leading-tight tracking-[-0.015em] pb-3">Nuestro Equipo</h3>
-  <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-
-    <!-- Miembro 1 -->
-    <div class="bg-card-light dark:bg-card-dark rounded-lg p-4 flex flex-col items-center text-center border border-subtle-light dark:border-subtle-dark shadow-sm">
-      <div class="w-24 h-24 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-800 mb-3">
-        <!-- reemplaza src por la imagen del miembro -->
-        <img src="documentos e imagenes/luisavatar.png" alt="Luis Felipe" class="w-full h-full object-cover"/>
-      </div>
-      <div class="text-sm font-bold text-text-light dark:text-text-dark">Luis Felipe Cardozo Herrada</div>
-      <div class="text-xs text-text-secondary-light dark:text-text-secondary-dark">Líder del proyecto / desarrollador backend</div>
-    </div>
-
-    <!-- Miembro 2 -->
-    <div class="bg-card-light dark:bg-card-dark rounded-lg p-4 flex flex-col items-center text-center border border-subtle-light dark:border-subtle-dark shadow-sm">
-      <div class="w-24 h-24 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-800 mb-3">
-        <img src="documentos e imagenes/williavatar.png" alt="William Dario" class="w-full h-full object-cover"/>
-      </div>
-      <div class="text-sm font-bold text-text-light dark:text-text-dark">William Dario Gonzalez Rojas</div>
-      <div class="text-xs text-text-secondary-light dark:text-text-secondary-dark">Diseñador de interfaz / experiencia de usuario (UI/UX)</div>
-    </div>
-
-    <!-- Miembro 3 -->
-    <div class="bg-card-light dark:bg-card-dark rounded-lg p-4 flex flex-col items-center text-center border border-subtle-light dark:border-subtle-dark shadow-sm">
-      <div class="w-24 h-24 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-800 mb-3">
-        <img src="documentos e imagenes/danielavatar.png" alt="Daniel Felipe" class="w-full h-full object-cover"/>
-      </div>
-      <div class="text-sm font-bold text-text-light dark:text-text-dark">Daniel Felipe Moreno Hecheverry</div>
-      <div class="text-xs text-text-secondary-light dark:text-text-secondary-dark">documentador del proyecto / Analista y encargado de base de datos</div>
-    </div>
-
-  </div>
-</section>
-</body></html>
+</body>
+</html>
