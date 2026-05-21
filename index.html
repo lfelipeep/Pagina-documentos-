@@ -43,7 +43,7 @@
       box-shadow: 0 18px 30px -8px rgba(0, 150, 255, 0.7);
       filter: brightness(1.05);
     }
-    /* Botón secundario azul (para el nuevo enlace) */
+    /* Botón secundario azul */
     .btn-secondary-cyan {
       background: linear-gradient(105deg, #0099ff 0%, #0066cc 100%);
       box-shadow: 0 8px 20px -6px rgba(0, 102, 204, 0.4);
@@ -114,7 +114,7 @@
     }
     .float-icon { animation: floatSoft 3s infinite alternate ease-in-out; }
     
-    /* pulse animation para el botón nuevo (opcional, llama la atención) */
+    /* pulse animation para el botón nuevo */
     @keyframes gentlePulse {
       0% { box-shadow: 0 0 0 0 rgba(0, 198, 255, 0.4); }
       70% { box-shadow: 0 0 0 10px rgba(0, 198, 255, 0); }
@@ -125,6 +125,21 @@
     }
     .pulse-attention:hover {
       animation: none;
+    }
+
+    /* Estilos adicionales para mejorar la estética */
+    .hero-gradient {
+      background: radial-gradient(circle at 30% 20%, rgba(0,198,255,0.08), transparent 70%);
+    }
+    .stats-card {
+      transition: all 0.3s ease;
+    }
+    .stats-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 200, 255, 0.5);
+    }
+    .floating-decoration {
+      animation: floatSoft 4s infinite alternate;
     }
   </style>
 </head>
@@ -149,101 +164,129 @@
         <a href="semestre2.html" class="nav-link text-sm font-semibold text-white/70">Semestre 2</a>
         <a href="semestre3.html" class="nav-link text-sm font-semibold text-white/70">Semestre 3</a>
         <a href="semestre4.html" class="nav-link text-sm font-semibold text-white/70">Semestre 4</a>
-         <a href="uno.html" class="nav-link text-sm font-semibold text-white/70">Info</a>
+        <a href="uno.html" class="nav-link text-sm font-semibold text-white/70">Info</a>
       </nav>
     </header>
 
     <main class="py-12 md:py-20">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div class="space-y-6">
-          <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur rounded-full px-4 py-1.5 border border-white/10">
-            <span class="w-2 h-2 rounded-full bg-[#00c6ff] animate-pulse"></span>
-            <span class="text-xs font-semibold tracking-wide text-white/80">⚡ Gamificación profesional · Niveles + badges</span>
+      <!-- Hero section rediseñada: sin cuadro derecho, centrado y con elementos decorativos -->
+      <div class="max-w-4xl mx-auto text-center hero-gradient rounded-3xl p-6 md:p-10 mb-16">
+        <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur rounded-full px-4 py-1.5 border border-white/10 mb-6">
+          <span class="w-2 h-2 rounded-full bg-[#00c6ff] animate-pulse"></span>
+          <span class="text-xs font-semibold tracking-wide text-white/80">⚡ Gamificación profesional · Niveles + badges</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">
+          Domina finanzas<span class="shimmer-cyan block"> jugando y ganando</span>
+        </h1>
+        <p class="text-white/60 text-lg max-w-2xl mx-auto mt-6 leading-relaxed">
+          Finance Kids transforma conceptos financieros en retos adictivos. Ahorro, presupuestos e inversión — todo en una experiencia tipo juego.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 mt-8">
+          <a href="https://finance-kids-frontend.onrender.com/" target="_blank" class="btn-cyan inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-bold text-white shadow-xl">
+            <span class="material-symbols-outlined text-xl">rocket_launch</span>
+            Apis
+          </a>
+          <a href="https://finance-kids-demo.onrender.com/login/" target="_blank" class="btn-secondary-cyan inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-bold text-white shadow-xl pulse-attention">
+            <span class="material-symbols-outlined text-xl">stadia_controller</span>
+            Juego Demo
+          </a>
+          <a href="semestre1.html" class="btn-outline-cyan inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold">
+            <span class="material-symbols-outlined text-lg">menu_book</span>
+            Explorar contenido
+          </a>
+        </div>
+        
+        <!-- Estadísticas mejoradas, justo debajo de los botones -->
+        <div class="grid grid-cols-3 gap-5 max-w-lg mx-auto mt-12">
+          <div class="glass-premium p-4 text-center stats-card">
+            <div class="text-3xl font-black text-[#00c6ff]">+50</div>
+            <div class="text-[11px] uppercase tracking-wider text-white/50">Lecciones</div>
           </div>
-          <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">
-            Domina finanzas<span class="shimmer-cyan block"> jugando y ganando</span>
-          </h1>
-          <p class="text-white/60 text-lg max-w-xl leading-relaxed">
-            Finance Kids transforma conceptos financieros en retos adictivos. Ahorro, presupuestos e inversión — todo en una experiencia tipo juego.
-          </p>
-          <div class="flex flex-wrap gap-4 pt-2">
-            <!-- Botón 1: Demo existente -->
-            <a href="https://finance-kids-frontend.onrender.com/" target="_blank" class="btn-cyan inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-bold text-white shadow-xl">
-              <span class="material-symbols-outlined text-xl">rocket_launch</span>
-              Apis
-            </a>
-            <!-- Botón 2: NUEVO enlace a finance-kids-frontend -->
-            <a href="https://finance-kids-demo.onrender.com/login/" target="_blank" class="btn-secondary-cyan inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-bold text-white shadow-xl pulse-attention">
-              <span class="material-symbols-outlined text-xl">stadia_controller</span>
-              Juego Demo
-            </a>
-            <!-- Botón 3: Explorar contenido -->
-            <a href="semestre1.html" class="btn-outline-cyan inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold">
-              <span class="material-symbols-outlined text-lg">menu_book</span>
-              Explorar contenido
-            </a>
+          <div class="glass-premium p-4 text-center stats-card">
+            <div class="text-3xl font-black text-[#00c6ff]">4</div>
+            <div class="text-[11px] uppercase tracking-wider text-white/50">Semestres</div>
           </div>
-          <div class="grid grid-cols-3 gap-3 pt-6">
-            <div class="glass-premium p-3 text-center rounded-2xl">
-              <div class="text-3xl font-black text-[#00c6ff]">+50</div>
-              <div class="text-[11px] uppercase tracking-wider text-white/50">Lecciones</div>
-            </div>
-            <div class="glass-premium p-3 text-center rounded-2xl">
-              <div class="text-3xl font-black text-[#00c6ff]">3</div>
-              <div class="text-[11px] uppercase tracking-wider text-white/50">Semestres</div>
-            </div>
-            <div class="glass-premium p-3 text-center rounded-2xl">
-              <div class="text-3xl font-black text-[#00c6ff]">🏆</div>
-              <div class="text-[11px] uppercase tracking-wider text-white/50">Logros</div>
-            </div>
+          <div class="glass-premium p-4 text-center stats-card">
+            <div class="text-3xl font-black text-[#00c6ff]">🏆</div>
+            <div class="text-[11px] uppercase tracking-wider text-white/50">Logros</div>
           </div>
         </div>
 
-        <div class="relative group">
-          <div class="glass-premium p-5 rounded-3xl shadow-2xl">
-            <div class="flex justify-between items-start mb-4">
-              <div>
-                <span class="text-xs font-semibold text-white/40 uppercase tracking-wider">Documento oficial</span>
-                <h3 class="text-xl font-bold">Proyecto Finance Kids</h3>
-              </div>
-              <div class="bg-white/10 rounded-full p-2 group-hover:scale-110 transition"><span class="material-symbols-outlined text-[#00c6ff]">picture_as_pdf</span></div>
-            </div>
-            <div class="h-52 rounded-2xl overflow-hidden border border-white/10 bg-black/30">
-              <iframe src="documentos e imagenes/DOCUMENTO PROYECTO, FINANCE KIDS.pdf" class="w-full h-full" frameborder="0"></iframe>
-            </div>
-            <div class="mt-5 flex gap-3">
-              <a href="documentos e imagenes/DOCUMENTO PROYECTO, FINANCE KIDS.pdf" target="_blank" class="flex-1 bg-white/10 hover:bg-white/20 text-center py-2.5 rounded-xl text-sm font-medium transition">📄 Vista previa</a>
-              <a href="documentos e imagenes/DOCUMENTO PROYECTO, FINANCE KIDS.pdf" download class="flex-1 btn-cyan text-white font-bold text-center py-2.5 rounded-xl text-sm shadow-md">⬇️ Descargar PDF</a>
-            </div>
-          </div>
-          <div class="absolute -z-10 -top-6 -right-8 w-40 h-40 bg-[#00c6ff] blur-3xl opacity-20 rounded-full group-hover:opacity-40 transition"></div>
+        <!-- Decoración flotante sutil (opcional) -->
+        <div class="absolute left-10 top-20 opacity-30 floating-decoration hidden md:block">
+          <span class="material-symbols-outlined text-6xl text-[#00c6ff]">paid</span>
+        </div>
+        <div class="absolute right-10 bottom-10 opacity-20 floating-decoration hidden md:block" style="animation-delay: 1.5s;">
+          <span class="material-symbols-outlined text-7xl text-[#00c6ff]">savings</span>
         </div>
       </div>
 
-      <!-- Features section -->
-      <div class="mt-28">
+      <!-- Features section (sin cambios, con mejor espaciado) -->
+      <div class="mt-16">
         <div class="text-center max-w-2xl mx-auto mb-12">
           <span class="text-[#00c6ff] text-sm font-bold uppercase tracking-wider">experiencia única</span>
           <h2 class="text-3xl md:text-4xl font-bold mt-2">Aprender nunca fue tan <span class="text-white/90">divertido</span></h2>
         </div>
         <div class="grid sm:grid-cols-3 gap-7">
-          <div class="glass-premium p-6 text-center group"><div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition"><span class="material-symbols-outlined text-3xl text-[#00c6ff]">stadia_controller</span></div><h3 class="text-xl font-bold">Gamificación total</h3><p class="text-white/50 text-sm mt-2">Misiones diarias, experiencia y ranking en vivo.</p></div>
-          <div class="glass-premium p-6 text-center group"><div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition"><span class="material-symbols-outlined text-3xl text-[#00c6ff]">insights</span></div><h3 class="text-xl font-bold">Progreso medible</h3><p class="text-white/50 text-sm mt-2">Estadísticas detalladas y metas personalizadas.</p></div>
-          <div class="glass-premium p-6 text-center group"><div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition"><span class="material-symbols-outlined text-3xl text-[#00c6ff]">child_care</span></div><h3 class="text-xl font-bold">100% seguro</h3><p class="text-white/50 text-sm mt-2">Sin publicidad, ambiente controlado y educativo.</p></div>
+          <div class="glass-premium p-6 text-center group">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition">
+              <span class="material-symbols-outlined text-3xl text-[#00c6ff]">stadia_controller</span>
+            </div>
+            <h3 class="text-xl font-bold">Gamificación total</h3>
+            <p class="text-white/50 text-sm mt-2">Misiones diarias, experiencia y ranking en vivo.</p>
+          </div>
+          <div class="glass-premium p-6 text-center group">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition">
+              <span class="material-symbols-outlined text-3xl text-[#00c6ff]">insights</span>
+            </div>
+            <h3 class="text-xl font-bold">Progreso medible</h3>
+            <p class="text-white/50 text-sm mt-2">Estadísticas detalladas y metas personalizadas.</p>
+          </div>
+          <div class="glass-premium p-6 text-center group">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition">
+              <span class="material-symbols-outlined text-3xl text-[#00c6ff]">child_care</span>
+            </div>
+            <h3 class="text-xl font-bold">100% seguro</h3>
+            <p class="text-white/50 text-sm mt-2">Sin publicidad, ambiente controlado y educativo.</p>
+          </div>
         </div>
       </div>
 
-      <!-- Team -->
+      <!-- Team section (sin cambios, solo espaciado) -->
       <div class="mt-28 mb-16">
-        <div class="text-center mb-10"><span class="text-[#00c6ff] text-sm font-semibold">equipo creativo</span><h2 class="text-3xl md:text-4xl font-bold">Detrás del proyecto</h2><p class="text-white/50 max-w-lg mx-auto mt-2">Talento joven, pasión por la educación financiera</p></div>
+        <div class="text-center mb-10">
+          <span class="text-[#00c6ff] text-sm font-semibold">equipo creativo</span>
+          <h2 class="text-3xl md:text-4xl font-bold">Detrás del proyecto</h2>
+          <p class="text-white/50 max-w-lg mx-auto mt-2">Talento joven, pasión por la educación financiera</p>
+        </div>
         <div class="grid sm:grid-cols-3 gap-8">
-          <div class="glass-premium p-6 text-center"><div class="w-28 h-28 mx-auto rounded-full overflow-hidden border-2 border-[#00c6ff]/50 shadow-xl mb-4"><img src="documentos e imagenes/luisavatar.png" class="w-full h-full object-cover"></div><div class="text-lg font-extrabold">Luis Felipe Cardozo</div><div class="text-xs text-white/40 uppercase tracking-wide">Diseño & Producto</div></div>
-          <div class="glass-premium p-6 text-center"><div class="w-28 h-28 mx-auto rounded-full overflow-hidden border-2 border-[#00c6ff]/50 shadow-xl mb-4"><img src="documentos e imagenes/williavatar.png" class="w-full h-full object-cover"></div><div class="text-lg font-extrabold">William Dario Gonzalez</div><div class="text-xs text-white/40 uppercase tracking-wide">Frontend & UX</div></div>
-          <div class="glass-premium p-6 text-center"><div class="w-28 h-28 mx-auto rounded-full overflow-hidden border-2 border-[#00c6ff]/50 shadow-xl mb-4"><img src="documentos e imagenes/danielavatar.png" class="w-full h-full object-cover"></div><div class="text-lg font-extrabold">Daniel Felipe Moreno</div><div class="text-xs text-white/40 uppercase tracking-wide">Backend & Datos</div></div>
+          <div class="glass-premium p-6 text-center">
+            <div class="w-28 h-28 mx-auto rounded-full overflow-hidden border-2 border-[#00c6ff]/50 shadow-xl mb-4">
+              <img src="documentos e imagenes/luisavatar.png" class="w-full h-full object-cover" alt="Luis Felipe">
+            </div>
+            <div class="text-lg font-extrabold">Luis Felipe Cardozo</div>
+            <div class="text-xs text-white/40 uppercase tracking-wide">Diseño & Producto</div>
+          </div>
+          <div class="glass-premium p-6 text-center">
+            <div class="w-28 h-28 mx-auto rounded-full overflow-hidden border-2 border-[#00c6ff]/50 shadow-xl mb-4">
+              <img src="documentos e imagenes/williavatar.png" class="w-full h-full object-cover" alt="William">
+            </div>
+            <div class="text-lg font-extrabold">William Dario Gonzalez</div>
+            <div class="text-xs text-white/40 uppercase tracking-wide">Frontend & UX</div>
+          </div>
+          <div class="glass-premium p-6 text-center">
+            <div class="w-28 h-28 mx-auto rounded-full overflow-hidden border-2 border-[#00c6ff]/50 shadow-xl mb-4">
+              <img src="documentos e imagenes/danielavatar.png" class="w-full h-full object-cover" alt="Daniel">
+            </div>
+            <div class="text-lg font-extrabold">Daniel Felipe Moreno</div>
+            <div class="text-xs text-white/40 uppercase tracking-wide">Backend & Datos</div>
+          </div>
         </div>
       </div>
     </main>
-    <footer class="py-8 border-t border-white/10 text-center text-white/30 text-sm">© 2025 Finance Kids — educación financiera del futuro</footer>
+    <footer class="py-8 border-t border-white/10 text-center text-white/30 text-sm">
+      © 2025 Finance Kids — educación financiera del futuro
+    </footer>
   </div>
   <script>
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
